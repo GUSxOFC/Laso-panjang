@@ -1,16 +1,24 @@
+// KODE FINAL UNTUK server.js
 const express = require('express');
+const cors = require('cors'); // Tambahkan ini
 const { TelegramClient } = require('gramjs');
 const { StringSession } = require('gramjs/sessions');
 const { Api } = require('gramjs/tl');
 const fs = require('fs');
 
 const app = express();
+app.use(cors()); // Gunakan cors
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public')); // Ini yang ngelayani file CSS dan HTML
 
 const PORT = process.env.PORT || 3000;
 const apiId = parseInt(process.env.API_ID);
 const apiHash = process.env.API_HASH;
+
+if (!apiId || !apiHash) {
+    console.error("ERROR: API_ID atau API_HASH tidak ditemukan di .env");
+    process.exit(1); // Hentikan server jika API key tidak ada
+}
 
 const sessionFile = '.session.txt';
 let stringSession = new StringSession(fs.existsSync(sessionFile) ? fs.readFileSync(sessionFile, 'utf8') : '');
@@ -22,37 +30,6 @@ const saveSession = (sessionString) => {
 };
 
 // --- API ENDPOINTS ---
-app.get('/api/status', (req, res) => res.json({ status: 'online', loggedIn: isLoggedIn }));
-app.post('/api/send-code', async (req, res) => { /* ... kode untuk send code ... */ });
-app.post('/api/sign-in', async (req, res) => { /* ... kode untuk sign in ... */ });
-app.post('/api/broadcast', async (req, res) => { /* ... kode untuk broadcast ... */ });
-app.post('/api/logout', async (req, res) => { /* ... kode untuk logout ... */ });
-
-// --- Salin kode lengkapnya di sini ---
-// (Saya memberikan versi lengkapnya di bawah agar tidak ada yang terlewat)
-const express = require('express');
-const { TelegramClient } = require('gramjs');
-const { StringSession } = require('gramjs/sessions');
-const { Api } = require('gramjs/tl');
-const fs = require('fs');
-
-const app = express();
-app.use(express.json());
-app.use(express.static('public'));
-
-const PORT = process.env.PORT || 3000;
-const apiId = parseInt(process.env.API_ID);
-const apiHash = process.env.API_HASH;
-
-const sessionFile = '.session.txt';
-let stringSession = new StringSession(fs.existsSync(sessionFile) ? fs.readFileSync(sessionFile, 'utf8') : '');
-let telegramClient;
-let isLoggedIn = false;
-
-const saveSession = (sessionString) => {
-  fs.writeFileSync(sessionFile, sessionString);
-};
-
 app.get('/api/status', (req, res) => {
     res.json({ status: 'online', loggedIn: isLoggedIn });
 });
@@ -114,4 +91,4 @@ app.post('/api/logout', async (req, res) => {
     res.json({ success: true, message: 'Logout berhasil.' });
 });
 
-app.listen(PORT, () => console.log('Server siap!'));
+app.listen(PORT, () => console.log('Server siap di port:', PORT));
