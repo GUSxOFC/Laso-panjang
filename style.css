@@ -1,0 +1,125 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #2c2c2c;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    text-align: center;
+    color: #4fc3f7;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #3a3a3a;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4fc3f7;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    margin-top: 15px;
+    width: auto;
+    padding: 10px 20px;
+    float: right;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none; /* Sembunyikan defaultnya */
+}
+
+.message.success {
+    background-color: #28a745;
+    color: white;
+    display: block;
+}
+
+.message.error {
+    background-color: #dc3545;
+    color: white;
+    display: block;
+}
+
+/* Indikator Status Backend */
+.status-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #dc3545; /* Default Merah (offline) */
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.7);
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+.status-indicator.online {
+    background-color: #28a745; /* Hijau/Biru (online) */
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+  }
